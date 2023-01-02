@@ -46,8 +46,8 @@ def main(cookie):
     myfiles = open("latest.rbxl", "rb").read() # Read the file that's going to be uploaded
     unvid = get(
         "https://api.roblox.com/universes/get-universe-containing-place?placeid="
-        + str(gameId)).json()["UniverseId"] # Universe ID, contains our *game*, not *place* configuration. It's weird complex shit, fuck you roblox.
-    print(f" [DATA] {unvid} - UniverseID") # Print universe ID
+        + str(gameId)).json()["assetId"] # Universe ID, contains our *game*, not *place* configuration. It's weird complex shit, fuck you roblox.
+    print(f" [DATA] {unvid} - UniverseID v2") # Print universe ID
     url = f"https://data.roblox.com/Data/Upload.ashx?assetid={str(gameId)}"
 
     url2 = f"https://develop.roblox.com/v2/universes/{str(unvid)}/configuration" # This is so that we're able to configure data like game name, description, private servers, etc.
@@ -111,7 +111,7 @@ def main(cookie):
         sheesh = sheesh[0]['playabilityStatus']
         if sheesh == 'UnderReview':
             def start():
-                k = 1
+                k = 1 
                 filename = 'cookies.txt'
                 with open(filename) as file:
                     lines = file.read().splitlines()
